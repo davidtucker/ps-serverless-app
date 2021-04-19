@@ -15,3 +15,19 @@ This learning path is focused on creating a modern full-stack serverless applica
 * Continuous delivery is implemented using an AWS CDK Pipeline
 * No third-party services are leveraged as the focus is on a cloud-native approach with AWS only
 
+## Following Along
+
+This repository is designed to be used alongside the learning path.  While the course consists of 11 courses, there are 5 courses where the concepts are applied to the sample application.  For each of these courses, you will have a starting and ending branch.  In addition, there will be a link to compare those two branches.
+
+The course links will be added once the entire path is released in the Pluralsight library.
+
+### Implementing Serverless Web Application Hosting and Delivery on AWS
+
+This course shows how to implement hosting for a single-page web application using the AWS CDK with Amazon S3 and CloudFront.
+
+Course Link (to be added once released)
+ 
+* [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p1)
+* [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p2)
+* [Comparison Between Branches](https://github.com/davidtucker/ps-serverless-app/compare/p1...p2)
+
