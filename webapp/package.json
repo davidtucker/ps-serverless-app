@@ -1,0 +1,66 @@
+{
+  "name": "@ps-serverless/webapp",
+  "version": "0.1.0",
+  "private": true,
+  "main": "build/index.js",
+  "dependencies": {
+    "@aws-amplify/ui-components": "^1.2.0",
+    "@aws-amplify/ui-react": "^1.0.6",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/data-grid": "^4.0.0-alpha.19",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "aws-amplify": "^3.3.26",
+    "axios": "^0.21.1",
+    "axios-auth-refresh": "^3.1.0",
+    "eslint-plugin-react": "^7.23.2",
+    "material-ui-chip-input": "^2.0.0-beta.2",
+    "material-ui-dropzone": "^3.5.0",
+    "mui-datatables": "^3.7.6",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-file-icon": "^1.0.0",
+    "react-helmet-async": "^1.0.7",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.2",
+    "react-transition-group": "^4.4.1",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "eslint-config-airbnb"
+    ],
+    "rules": {
+      "jsx-a11y/click-events-have-key-events": "off",
+      "jsx-a11y/no-noninteractive-element-interactions": "off",
+      "react/jsx-props-no-spreading": "off"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^18.2.1"
+  }
+}

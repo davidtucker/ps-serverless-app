@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "airbnb", 
+    "prettier",
+    "plugin:jest/recommended"
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error", { "singleQuote": true }],
+    "import/prefer-default-export": "off",
+    "consistent-return": "off",
+    "no-underscore-dangle": "off",
+    "global-require": "off"
+  }
+}
