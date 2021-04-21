@@ -2,7 +2,6 @@ import * as cdk from '@aws-cdk/core';
 import * as s3 from '@aws-cdk/aws-s3';
 import * as s3Deploy from '@aws-cdk/aws-s3-deployment';
 import * as cloudfront from '@aws-cdk/aws-cloudfront';
-import { execSync } from 'child_process';
 import * as path from 'path';
 
 interface WebAppProps {
@@ -16,9 +15,6 @@ export class WebApp extends cdk.Construct {
 
   constructor(scope: cdk.Construct, id: string, props: WebAppProps) {
     super(scope, id);
-
-    const dockerOutput = path.join('/', 'asset-input', props.relativeWebAppPath, 'build');
-    const localDir = path.join(props.baseDir, props.relativeWebAppPath);
 
     const oai = new cloudfront.OriginAccessIdentity(this, 'WebHostingOAI', {});
 
@@ -56,9 +52,9 @@ export class WebApp extends cdk.Construct {
 
     props.hostingBucket.grantRead(oai);
 
-    const executionEnv = {
-      ...process.env,
-    };
+    // Deploy Web App ----------------------------------------------------
+
+    const dockerOutput = path.join('/', 'asset-input', props.relativeWebAppPath, 'build');
 
     new s3Deploy.BucketDeployment(this, 'WebAppDeploy', {
       distribution: this.webDistribution,
@@ -67,20 +63,6 @@ export class WebApp extends cdk.Construct {
       sources: [
         s3Deploy.Source.asset(props.baseDir, {
           bundling: {
-            local: {
-              tryBundle(outputDir: string) {
-                try {
-                  execSync(`cd ${localDir} && yarn build && cp -R build/* ${outputDir}`, {
-                    stdio: 'inherit',
-                    env: executionEnv,
-                  });
-                  return true;
-                } catch (error) {
-                  console.error(`Local bundling error: ${error}`);
-                  throw new Error('Stop building process');
-                }
-              },
-            },
             image: cdk.DockerImage.fromRegistry('node'),
             command: [
               'sh',
@@ -93,6 +75,10 @@ export class WebApp extends cdk.Construct {
         }),
       ],
       destinationBucket: props.hostingBucket,
+    });
+
+    new cdk.CfnOutput(this, 'URL', {
+      value: `https://${this.webDistribution.distributionDomainName}/`
     });
   }
 }
