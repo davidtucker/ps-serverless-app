@@ -1,8 +1,7 @@
 import * as cdk from '@aws-cdk/core';
 import * as s3 from '@aws-cdk/aws-s3';
-import * as s3Deploy from '@aws-cdk/aws-s3-deployment';
 import * as cloudfront from '@aws-cdk/aws-cloudfront';
-import * as path from 'path';
+import * as cwt from 'cdk-webapp-tools';
 
 interface WebAppProps {
   hostingBucket: s3.IBucket;
@@ -54,27 +53,15 @@ export class WebApp extends cdk.Construct {
 
     // Deploy Web App ----------------------------------------------------
 
-    const dockerOutput = path.join('/', 'asset-input', props.relativeWebAppPath, 'build');
-
-    new s3Deploy.BucketDeployment(this, 'WebAppDeploy', {
-      distribution: this.webDistribution,
-      distributionPaths: ['/*'],
-      prune: true,
-      sources: [
-        s3Deploy.Source.asset(props.baseDir, {
-          bundling: {
-            image: cdk.DockerImage.fromRegistry('node'),
-            command: [
-              'sh',
-              '-c',
-              `
-              cd ${props.relativeWebAppPath} && yarn build && cp -r ${dockerOutput}/* /asset-output/
-              `,
-            ],
-          },
-        }),
-      ],
-      destinationBucket: props.hostingBucket,
+    new cwt.WebAppDeployment(this, 'WebAppDeploy', {
+      baseDirectory: '../',
+      relativeWebAppPath: 'webapp',
+      webDistribution: this.webDistribution,
+      webDistributionPaths: ['/*'],
+      buildCommand: 'yarn build',
+      buildDirectory: 'build',
+      bucket: props.hostingBucket,
+      prune: true
     });
 
     new cdk.CfnOutput(this, 'URL', {
