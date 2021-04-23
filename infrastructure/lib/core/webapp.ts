@@ -6,7 +6,7 @@ import * as cwt from 'cdk-webapp-tools';
 interface WebAppProps {
   hostingBucket: s3.IBucket;
   relativeWebAppPath: string;
-  baseDir: string;
+  baseDirectory: string;
 }
 
 export class WebApp extends cdk.Construct {
@@ -54,8 +54,8 @@ export class WebApp extends cdk.Construct {
     // Deploy Web App ----------------------------------------------------
 
     new cwt.WebAppDeployment(this, 'WebAppDeploy', {
-      baseDirectory: '../',
-      relativeWebAppPath: 'webapp',
+      baseDirectory: props.baseDirectory,
+      relativeWebAppPath: props.relativeWebAppPath,
       webDistribution: this.webDistribution,
       webDistributionPaths: ['/*'],
       buildCommand: 'yarn build',

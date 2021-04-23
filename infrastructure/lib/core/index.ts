@@ -10,7 +10,7 @@ export class ApplicationStack extends cdk.Stack {
     const storage = new AssetStorage(this, 'Storage');
 
     new WebApp(this, 'WebApp', {
-      baseDir: path.join(__dirname, '../', '../', '../'),
+      baseDirectory: '../',
       relativeWebAppPath: 'webapp',
       hostingBucket: storage.hostingBucket
     });
