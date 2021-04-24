@@ -1,5 +1,4 @@
 import * as cdk from '@aws-cdk/core';
-import * as path from 'path';
 import { AssetStorage } from './storage';
 import { WebApp } from './webapp';
 
@@ -10,9 +9,9 @@ export class ApplicationStack extends cdk.Stack {
     const storage = new AssetStorage(this, 'Storage');
 
     new WebApp(this, 'WebApp', {
+      hostingBucket: storage.hostingBucket,
       baseDirectory: '../',
       relativeWebAppPath: 'webapp',
-      hostingBucket: storage.hostingBucket
     });
   }
 }
