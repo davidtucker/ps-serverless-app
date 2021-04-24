@@ -1,4 +1,7 @@
+import axios from 'axios';
 import * as mock from './mockData';
+
+const SERVICES_HOST = window.appConfig.apiEndpoint;
 
 /* eslint-disable no-console */
 
@@ -60,18 +63,24 @@ export const updateCurrentUserProfile = async (name, shouldDeletePicture, pictur
 // Comments --------------------------------------------------------------
 
 export const createComment = async (id, content) => {
-  console.log(`[MOCK] Create Comment - Document ID ${id} Comment: ${content}`);
-  return mock.mockCall(mock.createComment(id, content), 1000);
+  const body = {
+    Comment: content,
+  };
+  const results = await axios.post(`${SERVICES_HOST}/comments/${id}`, body);
+  console.log(`Results: ${JSON.stringify(results)}`);
 };
 
 export const getCommentsForDocument = async (id) => {
-  console.log(`[MOCK] Get comments for document ${id}`);
-  return mock.mockCall(mock.getCommentsForDocument(id), 1000);
+  const results = await axios.get(`${SERVICES_HOST}/comments/${id}`);
+  const sortedResults = results.data.sort((a, b) => new Date(b.DateAdded) - new Date(a.DateAdded));
+  return sortedResults;
 };
 
 export const reportCommentForModeration = async (id) => {
-  console.log(`[MOCK] Report comment for moderation ${id}`);
-  return mock.mockCall({}, 1000);
+  const body = {
+    CommentId: id,
+  };
+  await axios.post(`${SERVICES_HOST}/moderate`, body);
 };
 
 /* eslint-enable no-console */

@@ -2,11 +2,13 @@ import * as cdk from '@aws-cdk/core';
 import * as s3 from '@aws-cdk/aws-s3';
 import * as cloudfront from '@aws-cdk/aws-cloudfront';
 import * as cwt from 'cdk-webapp-tools';
+import * as apigv2 from '@aws-cdk/aws-apigatewayv2';
 
 interface WebAppProps {
   hostingBucket: s3.IBucket;
   relativeWebAppPath: string;
   baseDirectory: string;
+  httpApi: apigv2.IHttpApi;
 }
 
 export class WebApp extends cdk.Construct {
@@ -53,7 +55,7 @@ export class WebApp extends cdk.Construct {
 
     // Deploy Web App ----------------------------------------------------
 
-    new cwt.WebAppDeployment(this, 'WebAppDeploy', {
+    const deployment = new cwt.WebAppDeployment(this, 'WebAppDeploy', {
       baseDirectory: props.baseDirectory,
       relativeWebAppPath: props.relativeWebAppPath,
       webDistribution: this.webDistribution,
@@ -61,11 +63,22 @@ export class WebApp extends cdk.Construct {
       buildCommand: 'yarn build',
       buildDirectory: 'build',
       bucket: props.hostingBucket,
-      prune: true
+      prune: false
     });
 
     new cdk.CfnOutput(this, 'URL', {
       value: `https://${this.webDistribution.distributionDomainName}/`
     });
+
+    // Web App Config ------------------------------------------------------
+
+    new cwt.WebAppConfig(this, 'WebAppConfig', {
+      bucket: props.hostingBucket,
+      key: 'config.js',
+      configData: {
+        apiEndpoint: props.httpApi.apiEndpoint
+      },
+      globalVariableName: 'appConfig'
+    }).node.addDependency(deployment);
   }
 }

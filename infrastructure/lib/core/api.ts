@@ -1,6 +1,5 @@
 import * as cdk from '@aws-cdk/core';
 import * as lambda from '@aws-cdk/aws-lambda';
-import * as cognito from '@aws-cdk/aws-cognito';
 import * as apigw from '@aws-cdk/aws-apigatewayv2';
 import { CorsHttpMethod, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
 import * as apigi from '@aws-cdk/aws-apigatewayv2-integrations';
@@ -9,10 +8,6 @@ import * as iam from '@aws-cdk/aws-iam';
 import * as sqs from '@aws-cdk/aws-sqs';
 
 interface ApplicationAPIProps {
-  userPool: cognito.IUserPool;
-  userPoolClient: cognito.IUserPoolClient;
-  usersService: lambda.IFunction;
-  documentsService: lambda.IFunction;
   commentsService: lambda.IFunction;
 }
 
@@ -94,7 +89,6 @@ export class ApplicationAPI extends cdk.Construct {
       apiId: this.httpApi.apiId,
       routeKey: 'POST /moderate',
       target: `integrations/${sqsIntegration.ref}`,
-      authorizationType: apigw.HttpAuthorizerType.JWT,
     });
   }
 }
