@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "commentid": {
+      "type": "string"
+    },
+    "docid": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
