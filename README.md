@@ -31,3 +31,12 @@ Course Link (to be added once released)
 * [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p2)
 * [Comparison Between Branches](https://github.com/davidtucker/ps-serverless-app/compare/p1...p2)
 
+### Building a Serverless API Tier with Amazon API Gateway
+
+This course shows how to build an API tier using AWS Lambda and Amazon API Gateway.
+
+Course Link (to be added once released)
+ 
+* [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p2)
+* [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p3)
+* [Comparison Between Branches](https://github.com/davidtucker/ps-serverless-app/compare/p2...p3)
