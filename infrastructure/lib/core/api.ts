@@ -3,7 +3,6 @@ import * as lambda from '@aws-cdk/aws-lambda';
 import * as apigw from '@aws-cdk/aws-apigatewayv2';
 import { CorsHttpMethod, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
 import * as apigi from '@aws-cdk/aws-apigatewayv2-integrations';
-import { PolicyStatement } from '@aws-cdk/aws-iam';
 import * as iam from '@aws-cdk/aws-iam';
 import * as sqs from '@aws-cdk/aws-sqs';
 
@@ -66,7 +65,7 @@ export class ApplicationAPI extends cdk.Construct {
     });
 
     moderateRole.addToPolicy(
-      new PolicyStatement({
+      new iam.PolicyStatement({
         resources: [queue.queueArn],
         actions: ['sqs:SendMessage'],
       }),
@@ -89,6 +88,12 @@ export class ApplicationAPI extends cdk.Construct {
       apiId: this.httpApi.apiId,
       routeKey: 'POST /moderate',
       target: `integrations/${sqsIntegration.ref}`,
+    });
+
+    // Outputs -----------------------------------------------------------
+
+    new cdk.CfnOutput(this, 'URL', {
+      value: this.httpApi.apiEndpoint
     });
   }
 }

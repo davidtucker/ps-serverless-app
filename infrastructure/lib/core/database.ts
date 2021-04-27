@@ -1,14 +1,14 @@
 import * as cdk from '@aws-cdk/core';
 import * as dynamodb from '@aws-cdk/aws-dynamodb';
-import { ITable } from '@aws-cdk/aws-dynamodb';
 
 export class AppDatabase extends cdk.Construct {
-  public readonly documentsTable: ITable;
+  public readonly documentsTable: dynamodb.ITable;
 
   constructor(scope: cdk.Construct, id: string) {
     super(scope, id);
 
     const documentsTable = new dynamodb.Table(this, 'DocumentsTable', {
+      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
       partitionKey: {
         name: 'PK',
         type: dynamodb.AttributeType.STRING,
@@ -17,8 +17,6 @@ export class AppDatabase extends cdk.Construct {
         name: 'SK',
         type: dynamodb.AttributeType.STRING,
       },
-      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
-      stream: dynamodb.StreamViewType.NEW_AND_OLD_IMAGES,
     });
 
     documentsTable.addGlobalSecondaryIndex({

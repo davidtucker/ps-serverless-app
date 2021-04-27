@@ -14,9 +14,7 @@ export class ApplicationStack extends cdk.Stack {
     const database = new AppDatabase(this, 'Database');
 
     const services = new AppServices(this, 'Services', {
-      documentsTable: database.documentsTable,
-      uploadBucket: storage.uploadBucket,
-      assetBucket: storage.assetBucket
+      documentsTable: database.documentsTable
     });
 
     const api = new ApplicationAPI(this, 'API', {

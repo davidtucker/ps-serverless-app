@@ -2,13 +2,13 @@ import * as cdk from '@aws-cdk/core';
 import * as s3 from '@aws-cdk/aws-s3';
 import * as cloudfront from '@aws-cdk/aws-cloudfront';
 import * as cwt from 'cdk-webapp-tools';
-import * as apigv2 from '@aws-cdk/aws-apigatewayv2';
+import * as apigw from '@aws-cdk/aws-apigatewayv2';
 
 interface WebAppProps {
   hostingBucket: s3.IBucket;
   relativeWebAppPath: string;
   baseDirectory: string;
-  httpApi: apigv2.IHttpApi;
+  httpApi:apigw.IHttpApi;
 }
 
 export class WebApp extends cdk.Construct {

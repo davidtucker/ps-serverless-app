@@ -12,11 +12,11 @@
 
 */
 import {
-  validatePathVariables,
-  validateBodyJSONVariables,
   createRouter,
   RouterType,
   Matcher,
+  validatePathVariables,
+  validateBodyJSONVariables,
 } from 'lambda-micro';
 import { AWSClients, generateID } from '../common';
 

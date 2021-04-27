@@ -1,14 +1,11 @@
 import * as path from 'path';
 import * as cdk from '@aws-cdk/core';
-import * as s3 from '@aws-cdk/aws-s3';
 import * as dynamodb from '@aws-cdk/aws-dynamodb';
 import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
 import { NodejsServiceFunction } from '../constructs/lambda';
 
 interface AppServicesProps {
   documentsTable: dynamodb.ITable;
-  uploadBucket: s3.IBucket;
-  assetBucket: s3.IBucket;
 }
 
 export class AppServices extends cdk.Construct {
