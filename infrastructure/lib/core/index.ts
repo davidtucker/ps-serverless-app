@@ -1,6 +1,8 @@
 import * as cdk from '@aws-cdk/core';
 import { ApplicationAPI } from './api';
 import { AppDatabase } from './database';
+import { ApplicationEvents } from './events';
+import { DocumentProcessing } from './processing';
 import { AppServices } from './services';
 import { AssetStorage } from './storage';
 import { WebApp } from './webapp';
@@ -14,11 +16,26 @@ export class ApplicationStack extends cdk.Stack {
     const database = new AppDatabase(this, 'Database');
 
     const services = new AppServices(this, 'Services', {
-      documentsTable: database.documentsTable
+      documentsTable: database.documentsTable,
+      uploadBucket: storage.uploadBucket,
+      assetBucket: storage.assetBucket,
     });
 
     const api = new ApplicationAPI(this, 'API', {
-      commentsService: services.commentsService
+      commentsService: services.commentsService,
+      documentsService: services.documentsService,
+    });
+
+    const processing = new DocumentProcessing(this, 'Processing', {
+      uploadBucket: storage.uploadBucket,
+      assetBucket: storage.assetBucket,
+      doucmentsTable: database.documentsTable,
+    });
+
+    new ApplicationEvents(this, 'Events', {
+      uploadBucket: storage.uploadBucket,
+      processingStateMachine: processing.processingStateMachine,
+      notificationsService: services.notificationsService,
     });
 
     new WebApp(this, 'WebApp', {

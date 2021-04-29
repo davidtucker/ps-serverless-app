@@ -8,6 +8,7 @@ import * as sqs from '@aws-cdk/aws-sqs';
 
 interface ApplicationAPIProps {
   commentsService: lambda.IFunction;
+  documentsService: lambda.IFunction;
 }
 
 export class ApplicationAPI extends cdk.Construct {
@@ -54,6 +55,18 @@ export class ApplicationAPI extends cdk.Construct {
       path: `/comments/{proxy+}`,
       methods: serviceMethods,
       integration: commentsServiceIntegration,
+    });
+
+    // Documents Service ------------------------------------------------
+
+    const documentsServiceIntegration = new apigi.LambdaProxyIntegration({
+      handler: props.documentsService,
+    });
+
+    this.httpApi.addRoutes({
+      path: `/documents/{proxy+}`,
+      methods: serviceMethods,
+      integration: documentsServiceIntegration,
     });
 
     // Moderate ----------------------------------------------------------

@@ -8,24 +8,27 @@ const SERVICES_HOST = window.appConfig.apiEndpoint;
 // Documents ---------------------------------------------------------
 
 export const getAllDocuments = async () => {
-  console.log('[MOCK] Get all documents');
-  return mock.mockCall(mock.allDocuments, 1000);
+  const { data } = await axios.get(`${SERVICES_HOST}/documents/`);
+  return data;
 };
 
 export const getDocument = async (id) => {
-  const document = mock.documents.find((d) => d.PK === id);
-  console.log(`[MOCK] Get Document: ${id}`);
-  return mock.mockCall(document, 1000);
+  const { data } = await axios.get(`${SERVICES_HOST}/documents/${id}`);
+  console.log(`Data: ${JSON.stringify(data)}`);
+  return data;
 };
 
 export const deleteDocument = async (id) => {
-  console.log(`[MOCK] Delete document: ${id}`);
-  return mock.mockCall({}, 1000);
+  await axios.delete(`${SERVICES_HOST}/documents/${id}`);
 };
 
 export const uploadDocument = async (name, tags, file) => {
-  console.log(`[MOCK] Upload document: ${name} ${tags} File: ${file.fileName}`);
-  return mock.mockCall({}, 2000);
+  const formData = new FormData();
+  formData.append('name', name);
+  formData.append('tags', tags.join(','));
+  formData.append('file', file);
+  const result = await axios.post(`${SERVICES_HOST}/documents/`, formData);
+  console.log(`Result from Upload: ${JSON.stringify(result)}`);
 };
 
 // Users

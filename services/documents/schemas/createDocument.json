@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "files": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/fileDefinition"
+      },
+      "minItems": 1,
+      "maxItems": 1
+    },
+    "fields": {
+      "$ref": "#/definitions/fieldsDefinition"
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "fileDefinition": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "object"
+        },
+        "fileName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contentType": {
+          "type": "string",
+          "enum": [
+            "application/pdf"
+          ]
+        },
+        "encoding": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fieldName": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "content",
+        "fileName",
+        "contentType",
+        "encoding",
+        "fieldName"
+      ]
+    },
+    "fieldsDefinition": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
