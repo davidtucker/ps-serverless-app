@@ -40,3 +40,13 @@ Course Link (to be added once released)
 * [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p2)
 * [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p3)
 * [Comparison Between Branches](https://github.com/davidtucker/ps-serverless-app/compare/p2...p3)
+
+### Utilizing Amazon EventBridge in Serverless Applications
+
+This course shows how to build an event-based architecture with Amazon EventBridge.
+
+Course Link (to be added once released)
+ 
+* [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p3)
+* [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p4)
+* [Comparison Between Branches](https://github.com/davidtucker/ps-serverless-app/compare/p3...p4)
