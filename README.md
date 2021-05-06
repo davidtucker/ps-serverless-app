@@ -50,3 +50,19 @@ Course Link (to be added once released)
 * [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p3)
 * [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p4)
 * [Comparison Between Branches](https://github.com/davidtucker/ps-serverless-app/compare/p3...p4)
+
+### Implementing Authentication for a Serverless HTTP API on AWS
+
+Course Link (to be added once released)
+ 
+* [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p4)
+* [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p5)
+* [Comparison Between Branches](https://github.com/davidtucker/ps-serverless-app/compare/p4...p5)
+
+### Implementing Monitoring and Continuous Deployment for Serverless Applications on AWS
+
+Course Link (to be added once released)
+ 
+* [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p5)
+* [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p6)
+* [Comparison Between Branches](https://github.com/davidtucker/ps-serverless-app/compare/p5...p6)
