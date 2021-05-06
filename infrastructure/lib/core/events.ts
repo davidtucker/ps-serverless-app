@@ -17,10 +17,10 @@ export class ApplicationEvents extends cdk.Construct {
 
     // Trigger Step Function from S3 Upload ------------------------------
 
-    const uploadEvent = props.uploadBucket.onCloudTrailWriteObject('UploadRule', {});
+    const uploadRule = props.uploadBucket.onCloudTrailWriteObject('UploadRule', {});
 
     const stateMachineTarget = new targets.SfnStateMachine(props.processingStateMachine, {});
-    uploadEvent.addTarget(stateMachineTarget);
+    uploadRule.addTarget(stateMachineTarget);
 
     // Custom Event Bus for App ------------------------------------------
 

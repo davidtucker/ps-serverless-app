@@ -31,6 +31,13 @@ export class AppServices extends cdk.Construct {
 
     props.documentsTable.grantReadWriteData(this.commentsService);
 
+    this.commentsService.addToRolePolicy(
+      new iam.PolicyStatement({
+        resources: ['*'],
+        actions: ['events:PutEvents'],
+      }),
+    );
+
     this.commentsService.addEnvironment('DYNAMO_DB_TABLE', props.documentsTable.tableName);
 
     // Documents Service ------------------------------------------------
