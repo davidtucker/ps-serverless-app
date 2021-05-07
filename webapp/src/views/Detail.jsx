@@ -16,6 +16,7 @@ import Tags from './detail/Tags';
 import DocumentInfo from './detail/DocumentInfo';
 import LoadingView from '../components/LoadingView';
 import Comments from './detail/Comments';
+import AuthGroupWrapper from '../components/AuthGroupWrapper';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -106,9 +107,11 @@ function Detail() {
     }
     return (
       <Grid container direction="row" alignItems="center" justify="flex-end" spacing={1}>
-        <Grid item>
-          <Button variant="outlined" color="secondary" className={classes.uploadButton} onClick={deleteCurrentDocument}>Delete Document</Button>
-        </Grid>
+        <AuthGroupWrapper requiredGroups={['admin', 'contributor']}>
+          <Grid item>
+            <Button variant="outlined" color="secondary" className={classes.uploadButton} onClick={deleteCurrentDocument}>Delete Document</Button>
+          </Grid>
+        </AuthGroupWrapper>
         <Grid item>
           <Button variant="outlined" color="primary" className={classes.uploadButton} href={documentData.Document} download>Download Document</Button>
         </Grid>

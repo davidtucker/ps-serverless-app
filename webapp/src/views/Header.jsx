@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import BackupIcon from '@material-ui/icons/Backup';
 import { useHistory } from 'react-router-dom';
 import UserBadge from '../components/UserBadge';
+import AuthGroupWrapper from '../components/AuthGroupWrapper';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +34,9 @@ function Header() {
         <div className={classes.logoContainer}>
           <img src="/images/globomantics-logo-grey.png" alt="Globomantics Logo" className={classes.logo} onClick={() => history.push('/')} />
         </div>
-        <Button variant="outlined" color="primary" onClick={() => history.push('/upload')} className={classes.uploadButton} startIcon={<BackupIcon />}>Upload</Button>
+        <AuthGroupWrapper requiredGroups={['admin', 'contributor']}>
+          <Button variant="outlined" color="primary" onClick={() => history.push('/upload')} className={classes.uploadButton} startIcon={<BackupIcon />}>Upload</Button>
+        </AuthGroupWrapper>
         <UserBadge />
       </Toolbar>
     </AppBar>

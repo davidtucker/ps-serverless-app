@@ -2,6 +2,7 @@ import * as cdk from '@aws-cdk/core';
 import { ApplicationAPI } from './api';
 import { AppDatabase } from './database';
 import { ApplicationEvents } from './events';
+import { ApplicationAuth } from './auth';
 import { DocumentProcessing } from './processing';
 import { AppServices } from './services';
 import { AssetStorage } from './storage';
@@ -13,17 +14,23 @@ export class ApplicationStack extends cdk.Stack {
 
     const storage = new AssetStorage(this, 'Storage');
 
+    const auth = new ApplicationAuth(this, 'Auth');
+
     const database = new AppDatabase(this, 'Database');
 
     const services = new AppServices(this, 'Services', {
       documentsTable: database.documentsTable,
       uploadBucket: storage.uploadBucket,
       assetBucket: storage.assetBucket,
+      userPool: auth.userPool,
     });
 
     const api = new ApplicationAPI(this, 'API', {
       commentsService: services.commentsService,
       documentsService: services.documentsService,
+      usersService: services.usersService,
+      userPool: auth.userPool,
+      userPoolClient: auth.userPoolClient,
     });
 
     const processing = new DocumentProcessing(this, 'Processing', {
@@ -38,11 +45,14 @@ export class ApplicationStack extends cdk.Stack {
       notificationsService: services.notificationsService,
     });
 
-    new WebApp(this, 'WebApp', {
+    const webapp = new WebApp(this, 'WebApp', {
       hostingBucket: storage.hostingBucket,
       baseDirectory: '../',
       relativeWebAppPath: 'webapp',
-      httpApi: api.httpApi
+      httpApi: api.httpApi,
+      userPool: auth.userPool,
+      userPoolClient: auth.userPoolClient,
     });
+    webapp.node.addDependency(auth);
   }
 }

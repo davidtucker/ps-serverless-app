@@ -16,6 +16,7 @@ import {
   createRouter,
   RouterType,
   Matcher,
+  enforceGroupMembership,
 } from 'lambda-micro';
 import { AWSClients, generateID } from '../common';
 
@@ -194,11 +195,13 @@ router.add(
 );
 router.add(
   Matcher.HttpApiV2('DELETE', '/documents(/:id)'),
+  enforceGroupMembership(['admin', 'contributor']),
   validatePathVariables(schemas.idPathVariable),
   deleteDocument,
 );
 router.add(
   Matcher.HttpApiV2('POST', '/documents/'),
+  enforceGroupMembership(['admin', 'contributor']),
   parseMultipartFormData,
   validateMultipartFormData(schemas.createDocument),
   createDocument,
