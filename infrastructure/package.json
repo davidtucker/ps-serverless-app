@@ -96,7 +96,7 @@
     "@aws-cdk/lambda-layer-kubectl": "1.100.0",
     "@aws-cdk/pipelines": "1.100.0",
     "@aws-cdk/region-info": "1.100.0",
-    "cdk-webapp-tools": "1.100.10",
+    "cdk-webapp-tools": "1.100.11",
     "constructs": "^3.3.69",
     "source-map-support": "^0.5.16"
   }
