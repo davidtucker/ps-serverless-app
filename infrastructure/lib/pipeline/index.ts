@@ -11,13 +11,16 @@ export class ApplicationPipelineStack extends cdk.Stack {
     const cloudAssemblyArtifact = new codepipeline.Artifact();
 
     new CdkPipeline(this, 'Pipeline', {
-      pipelineName: 'MyAppPipeline',
+      pipelineName: 'DMSPipeline',
       cloudAssemblyArtifact,
+      crossAccountKeys: false,
 
       sourceAction: new GitHubSourceAction({
         actionName: 'GitHub',
         output: sourceArtifact,
-        oauthToken: cdk.SecretValue.secretsManager('GITHUB_TOKEN'),
+        oauthToken: cdk.SecretValue.secretsManager('dms_config', {
+          jsonField: 'github_token'
+        }),
         owner: 'davidtucker',
         repo: 'ps-serverless-app',
         branch: 'main'
