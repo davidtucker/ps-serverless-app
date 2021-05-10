@@ -33,7 +33,7 @@ export class AppServices extends cdk.Construct {
       entry: path.join(__dirname, '../../../services/comments/index.js'),
     });
 
-    // props.documentsTable.grantReadWriteData(this.commentsService);
+    props.documentsTable.grantReadWriteData(this.commentsService);
 
     this.commentsService.addToRolePolicy(
       new iam.PolicyStatement({
