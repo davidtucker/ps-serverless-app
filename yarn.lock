@@ -332,7 +332,7 @@
     "@aws-cdk/cx-api" "1.100.0"
     constructs "^3.3.69"
 
-"@aws-cdk/aws-cloudfront@1.100.0", "@aws-cdk/aws-cloudfront@^1.100.0":
+"@aws-cdk/aws-cloudfront@1.100.0":
   version "1.100.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-cloudfront/-/aws-cloudfront-1.100.0.tgz#b927929ecf4532836ea87a5a80143fd41ef349c2"
   integrity sha512-70ulJs4zaJ+jtQ4OwxWEgKiNxVKLRUYETBxJTE337tzwFE1X/lrXhRUoew87q6sxOYC/AVF2BAxZhwxZjThYAw==
@@ -762,7 +762,7 @@
     "@aws-cdk/core" "1.100.0"
     constructs "^3.3.69"
 
-"@aws-cdk/aws-lambda-nodejs@1.100.0", "@aws-cdk/aws-lambda-nodejs@^1.100.0":
+"@aws-cdk/aws-lambda-nodejs@1.100.0":
   version "1.100.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-lambda-nodejs/-/aws-lambda-nodejs-1.100.0.tgz#5ac394979d053088a54a621d26dd92006a027d27"
   integrity sha512-8TD0f53kRiVfhbUIoreV+g9qF1Te4LKaOKaQ2Nc+oSBdAW2D/FPjiJAkG8/SFvF13pk22kvoxvj1S0CZSlsaBw==
@@ -771,7 +771,7 @@
     "@aws-cdk/core" "1.100.0"
     constructs "^3.3.69"
 
-"@aws-cdk/aws-lambda@1.100.0", "@aws-cdk/aws-lambda@^1.100.0":
+"@aws-cdk/aws-lambda@1.100.0":
   version "1.100.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-lambda/-/aws-lambda-1.100.0.tgz#d4a77a8fd5511e4e0136de34030a22510808fe98"
   integrity sha512-v+CwVunBqL/kmhNtu4UrZtP45PnvhZNUEu72DGwyrTyd6vGn7CnOF9l8uO9G2YfI5oSvQGFkdAT6NBLQzfTZ4Q==
@@ -869,7 +869,7 @@
     "@aws-cdk/cx-api" "1.100.0"
     constructs "^3.3.69"
 
-"@aws-cdk/aws-s3-deployment@1.100.0", "@aws-cdk/aws-s3-deployment@^1.100.0":
+"@aws-cdk/aws-s3-deployment@1.100.0":
   version "1.100.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-s3-deployment/-/aws-s3-deployment-1.100.0.tgz#f6848a2e5aeaabdef196cf207fe9735e3f2cf791"
   integrity sha512-Gf6i1ETV+TRqzPu5k3T13yveOVniFCDjFdBayDQW5Z2bR5/c42qozMkxiAqxU2WRJg2Fmv5MACCAPJ0XBs3BhQ==
@@ -897,7 +897,7 @@
     "@aws-cdk/core" "1.100.0"
     constructs "^3.3.69"
 
-"@aws-cdk/aws-s3@1.100.0", "@aws-cdk/aws-s3@^1.100.0":
+"@aws-cdk/aws-s3@1.100.0":
   version "1.100.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-s3/-/aws-s3-1.100.0.tgz#072fa0a3e6e3a8dd5cd4e087dd9ec128bd94c8ae"
   integrity sha512-gbdRpgnl2mw2Gl3LVmJaTVdQaCqbXYDN9P0DCAl4zXACOdNsHHP8jNYcJfh8wDDWDpJTLm/V2sKHOY01e1xH+w==
@@ -1080,7 +1080,7 @@
     string-width "^4.2.2"
     table "^6.1.0"
 
-"@aws-cdk/core@1.100.0", "@aws-cdk/core@^1.100.0":
+"@aws-cdk/core@1.100.0":
   version "1.100.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/core/-/core-1.100.0.tgz#f8de9d03b0c85f4b077e48e023fb467e970f51b2"
   integrity sha512-QnjFTqi5WX5k6qIakM0rVpNPYFIrGNIuJddph0wF1P0bb3a31YKLYO7lAHdPQXH3kIlO7+TjpRaalGhqT/8wJA==
@@ -1094,7 +1094,7 @@
     ignore "^5.1.8"
     minimatch "^3.0.4"
 
-"@aws-cdk/custom-resources@1.100.0", "@aws-cdk/custom-resources@^1.100.0":
+"@aws-cdk/custom-resources@1.100.0":
   version "1.100.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/custom-resources/-/custom-resources-1.100.0.tgz#9e7b8f376d003dde1c43393b1cbaa81edd0a5319"
   integrity sha512-8rXip/IG3USkyejjkvbD0++j76PEmFM/wfbdEDLoQT3IWmH7dflXVekZP7rHhyFT4sMXehmpey4YJW9gDdK/5w==
@@ -5978,18 +5978,18 @@ cdk-assets@1.100.0:
     glob "^7.1.6"
     yargs "^16.2.0"
 
-cdk-webapp-tools@1.100.10:
-  version "1.100.10"
-  resolved "https://registry.yarnpkg.com/cdk-webapp-tools/-/cdk-webapp-tools-1.100.10.tgz#9688def9bf18448644f8461e1af07a2a3940de23"
-  integrity sha512-K8FOsKwBGutaXb42LYdUQ/aEVPVTDF2Y6E3mUsMnmnlD+IsMDR/Ig4A/ijk0DYhE8EEnWTJGiBfQ/CmClyXcTQ==
+cdk-webapp-tools@1.100.11:
+  version "1.100.11"
+  resolved "https://registry.yarnpkg.com/cdk-webapp-tools/-/cdk-webapp-tools-1.100.11.tgz#f9b71d65fcf503beb71c6ba1c68cd9eac3826463"
+  integrity sha512-K8BZ6a73k6a0W9yXOAYjCKOidI7QI0kDPJiwlzVFGzgndZ3dZA0TkOzUtuifJUk/+2LE2D7r31MQO+Bjudk2FA==
   dependencies:
-    "@aws-cdk/aws-cloudfront" "^1.100.0"
-    "@aws-cdk/aws-lambda" "^1.100.0"
-    "@aws-cdk/aws-lambda-nodejs" "^1.100.0"
-    "@aws-cdk/aws-s3" "^1.100.0"
-    "@aws-cdk/aws-s3-deployment" "^1.100.0"
-    "@aws-cdk/core" "^1.100.0"
-    "@aws-cdk/custom-resources" "^1.100.0"
+    "@aws-cdk/aws-cloudfront" "1.100.0"
+    "@aws-cdk/aws-lambda" "1.100.0"
+    "@aws-cdk/aws-lambda-nodejs" "1.100.0"
+    "@aws-cdk/aws-s3" "1.100.0"
+    "@aws-cdk/aws-s3-deployment" "1.100.0"
+    "@aws-cdk/core" "1.100.0"
+    "@aws-cdk/custom-resources" "1.100.0"
 
 chalk@2.4.2, chalk@^2.0.0, chalk@^2.1.0, chalk@^2.4.1, chalk@^2.4.2:
   version "2.4.2"
