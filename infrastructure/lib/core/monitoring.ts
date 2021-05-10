@@ -9,6 +9,7 @@ import * as s3 from '@aws-cdk/aws-s3';
 import * as sns from '@aws-cdk/aws-sns';
 import * as ssm from '@aws-cdk/aws-ssm';
 import * as subscriptions from '@aws-cdk/aws-sns-subscriptions';
+import { generateDashboardBody, MonitoringDashboardConfigProps } from '../config/dashboard';
 
 interface ApplicationMonitoringProps {
   api: apigv2.IHttpApi;
@@ -41,6 +42,24 @@ export class ApplicationMonitoring extends cdk.Construct {
     this.addAlarmsToService('Documents', props.documentsService);
     this.addAlarmsToService('Comments', props.commentsService);
     this.addAlarmsToService('Users', props.usersService);
+
+    // Dashboard ---------------------------------------------------------
+
+    const dashboardProps: MonitoringDashboardConfigProps = {
+      api: props.api,
+      table: props.table,
+      documentsService: props.documentsService,
+      commentsService: props.commentsService,
+      usersService: props.usersService,
+      processingStateMachine: props.processingStateMachine,
+      assetsBucket: props.assetsBucket,
+    };
+    const dashboardBody = generateDashboardBody(dashboardProps);
+
+    new cw.CfnDashboard(this, 'MonitoringDashboard', {
+      dashboardName: 'DMS_Dashboard',
+      dashboardBody,
+    });
   }
 
   addAlarmsToService(name: string, service: lambda.IFunction): void {
