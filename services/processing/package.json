@@ -5,6 +5,6 @@
   "license": "MIT",
   "dependencies": {
     "pdf-lib": "^1.16.0",
-    "lambda-micro": "^1.0.0"
+    "lambda-micro": "1.0.1"
   }
 }
