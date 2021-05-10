@@ -10741,10 +10741,10 @@ ksuid@^2.0.0:
   dependencies:
     base-convert-int-array "^1.0.1"
 
-lambda-micro@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/lambda-micro/-/lambda-micro-1.0.0.tgz#2934e31b72a95a958c9e2bb25d182d301e954b0c"
-  integrity sha512-VjcP59cPXf8cbfymAu/pobGm3NBLTeJqdCmWHuirrxer41jwO41YBcsR5cRpT+vGGefeQERiFY+eJMHUB3WDNw==
+lambda-micro@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/lambda-micro/-/lambda-micro-1.0.1.tgz#7e89e98c3ae6e8a02f69081fe90d7b6c069c1079"
+  integrity sha512-BMOJY6cT/tV+9YdVur0K+imnDEuuURsfHHYawvlSODO17xmYrjCeNiHJsDWLpZxV/XId6MZXW+btyfdlP/80GQ==
   dependencies:
     ajv "^6.12.6"
     busboy "^0.3.1"
