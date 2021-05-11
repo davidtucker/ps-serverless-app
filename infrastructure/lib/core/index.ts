@@ -36,7 +36,7 @@ export class ApplicationStack extends cdk.Stack {
     const processing = new DocumentProcessing(this, 'Processing', {
       uploadBucket: storage.uploadBucket,
       assetBucket: storage.assetBucket,
-      doucmentsTable: database.documentsTable,
+      documentsTable: database.documentsTable,
     });
 
     new ApplicationEvents(this, 'Events', {
