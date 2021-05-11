@@ -38,9 +38,13 @@ export class ApplicationPipelineStack extends cdk.Stack {
       }),
     });
 
-    const app = new cdk.App();
-    new ApplicationStack(app, 'AppStack');
-    pipeline.addApplicationStage(app);
+    pipeline.addApplicationStage(new AppStage(this, 'AppStage'));
+  }
+}
 
+class AppStage extends cdk.Stage {
+  constructor(scope: cdk.Construct, id: string, props?: cdk.StageProps) {
+    super(scope, id, props);
+    new ApplicationStack(this, 'AppStack');
   }
 }
