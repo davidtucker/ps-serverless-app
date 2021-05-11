@@ -2,6 +2,7 @@ import * as cdk from '@aws-cdk/core';
 import { CdkPipeline, SimpleSynthAction } from '@aws-cdk/pipelines';
 import * as codepipeline from '@aws-cdk/aws-codepipeline';
 import { GitHubSourceAction } from '@aws-cdk/aws-codepipeline-actions';
+import { ApplicationStack } from '../core';
 
 export class ApplicationPipelineStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -10,7 +11,7 @@ export class ApplicationPipelineStack extends cdk.Stack {
     const sourceArtifact = new codepipeline.Artifact();
     const cloudAssemblyArtifact = new codepipeline.Artifact();
 
-    new CdkPipeline(this, 'Pipeline', {
+    const pipeline = new CdkPipeline(this, 'Pipeline', {
       pipelineName: 'DMSPipeline',
       cloudAssemblyArtifact,
       crossAccountKeys: false,
@@ -36,5 +37,10 @@ export class ApplicationPipelineStack extends cdk.Stack {
         },
       }),
     });
+
+    const app = new cdk.App();
+    new ApplicationStack(app, 'AppStack');
+    pipeline.addApplicationStage(app);
+
   }
 }
