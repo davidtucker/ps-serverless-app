@@ -8,8 +8,6 @@
     "@aws-cdk/aws-secretsmanager:parseOwnedSecretName": true,
     "@aws-cdk/aws-kms:defaultKeyPolicies": true,
     "@aws-cdk/aws-s3:grantWriteWithoutAcl": true,
-    "context": {
-      "@aws-cdk/core:newStyleStackSynthesis": true
-    }
+    "@aws-cdk/core:newStyleStackSynthesis": true
   }
 }
