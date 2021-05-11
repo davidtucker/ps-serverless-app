@@ -11,7 +11,7 @@ import { NodejsServiceFunction } from '../constructs/lambda';
 interface DocumentProcessingProps {
   uploadBucket: s3.IBucket;
   assetBucket: s3.IBucket;
-  doucmentsTable: dynamodb.ITable;
+  documentsTable: dynamodb.ITable;
 }
 
 export class DocumentProcessing extends cdk.Construct {
@@ -111,7 +111,7 @@ export class DocumentProcessing extends cdk.Construct {
       entry: path.join(__dirname, '../../../services/processing/insert.js'),
     });
 
-    insertDocument.addEnvironment('DYNAMO_DB_TABLE', props.doucmentsTable.tableName);
+    insertDocument.addEnvironment('DYNAMO_DB_TABLE', props.documentsTable.tableName);
     insertDocument.addEnvironment('UPLOAD_BUCKET', props.uploadBucket.bucketName);
     insertDocument.addEnvironment('ASSET_BUCKET', props.assetBucket.bucketName);
     props.uploadBucket.grantReadWrite(insertDocument);
@@ -119,7 +119,7 @@ export class DocumentProcessing extends cdk.Construct {
 
     insertDocument.addToRolePolicy(
       new iam.PolicyStatement({
-        resources: [props.doucmentsTable.tableArn],
+        resources: [props.documentsTable.tableArn],
         actions: ['dynamodb:UpdateItem'],
       }),
     );
@@ -135,7 +135,7 @@ export class DocumentProcessing extends cdk.Construct {
       entry: path.join(__dirname, '../../../services/processing/catchError.js'),
     });
 
-    catchError.addEnvironment('DYNAMO_DB_TABLE', props.doucmentsTable.tableName);
+    catchError.addEnvironment('DYNAMO_DB_TABLE', props.documentsTable.tableName);
     catchError.addEnvironment('UPLOAD_BUCKET', props.uploadBucket.bucketName);
     catchError.addEnvironment('ASSET_BUCKET', props.assetBucket.bucketName);
     props.uploadBucket.grantReadWrite(catchError);
@@ -143,7 +143,7 @@ export class DocumentProcessing extends cdk.Construct {
 
     catchError.addToRolePolicy(
       new iam.PolicyStatement({
-        resources: [props.doucmentsTable.tableArn],
+        resources: [props.documentsTable.tableArn],
         actions: ['dynamodb:DeleteItem', 'dynamodb:Query'],
       }),
     );
