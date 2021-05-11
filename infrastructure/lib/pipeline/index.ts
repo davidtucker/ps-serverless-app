@@ -4,6 +4,13 @@ import * as codepipeline from '@aws-cdk/aws-codepipeline';
 import { GitHubSourceAction } from '@aws-cdk/aws-codepipeline-actions';
 import { ApplicationStack } from '../core';
 
+class AppStage extends cdk.Stage {
+  constructor(scope: cdk.Construct, id: string, props?: cdk.StageProps) {
+    super(scope, id, props);
+    new ApplicationStack(this, 'AppStack');
+  }
+}
+
 export class ApplicationPipelineStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -15,7 +22,6 @@ export class ApplicationPipelineStack extends cdk.Stack {
       pipelineName: 'DMSPipeline',
       cloudAssemblyArtifact,
       crossAccountKeys: false,
-
       sourceAction: new GitHubSourceAction({
         actionName: 'GitHub',
         output: sourceArtifact,
@@ -26,7 +32,6 @@ export class ApplicationPipelineStack extends cdk.Stack {
         repo: 'ps-serverless-app',
         branch: 'main'
       }),
-
       synthAction: SimpleSynthAction.standardNpmSynth({
         sourceArtifact,
         cloudAssemblyArtifact,
@@ -38,13 +43,7 @@ export class ApplicationPipelineStack extends cdk.Stack {
       }),
     });
 
-    pipeline.addApplicationStage(new AppStage(this, 'AppStage'));
+    pipeline.addApplicationStage(new AppStage(this, 'Staging'));
   }
 }
 
-class AppStage extends cdk.Stage {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StageProps) {
-    super(scope, id, props);
-    new ApplicationStack(this, 'AppStack');
-  }
-}
