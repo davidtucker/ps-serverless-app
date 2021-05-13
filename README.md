@@ -1,6 +1,6 @@
 # Serverless Development on AWS
 
-__This learning path has not launched yet. Once launched the links will be added.__
+[Learning Path on Pluralsight](https://app.pluralsight.com/paths/skills/building-serverless-applications-on-aws)
 
 This repository is for the Serverless Development on AWS learning path for Pluralsight. 
 
@@ -19,11 +19,11 @@ This learning path is focused on creating a modern full-stack serverless applica
 
 This repository is designed to be used alongside the learning path.  While the course consists of 11 courses, there are 5 courses where the concepts are applied to the sample application.  For each of these courses, you will have a starting and ending branch.  In addition, there will be a link to compare those two branches.
 
-The course links will be added once the entire path is released in the Pluralsight library.
-
 ### Implementing Serverless Web Application Hosting and Delivery on AWS
 
-This course shows how to implement hosting for a single-page web application using the AWS CDK with Amazon S3 and CloudFront.
+Learn about leveraging Amazon S3 and CloudFront to distribute serverless web applications on a global scale.
+
+[Course Link](https://app.pluralsight.com/library/courses/implementing-serverless-web-application-hosting-delivery-aws)
 
 Course Link (to be added once released)
  
@@ -33,9 +33,9 @@ Course Link (to be added once released)
 
 ### Building a Serverless API Tier with Amazon API Gateway
 
-This course shows how to build an API tier using AWS Lambda and Amazon API Gateway.
+Learn about using AWS Lambda as your compute service while exposing an API with API Gateway all while using Amazon DynamoDB to store application data.
 
-Course Link (to be added once released)
+[Course Link](https://app.pluralsight.com/library/courses/building-serverless-api-tier-amazon-api-gateway)
  
 * [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p2)
 * [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p3)
@@ -43,9 +43,9 @@ Course Link (to be added once released)
 
 ### Utilizing Amazon EventBridge in Serverless Applications
 
-This course shows how to build an event-based architecture with Amazon EventBridge.
+Learn about using Amazon EventBridge alongside Amazon S3 and Step Functions to create powerful microservices for your serverless application.
 
-Course Link (to be added once released)
+[Course Link](https://app.pluralsight.com/library/courses/utilizing-amazon-eventbridge-serverless-applications)
  
 * [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p3)
 * [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p4)
@@ -53,7 +53,9 @@ Course Link (to be added once released)
 
 ### Implementing Authentication for a Serverless HTTP API on AWS
 
-Course Link (to be added once released)
+Learn about securing serverless applications with Amazon Cognito for both web applications and the API tier.
+
+[Course Link](https://app.pluralsight.com/library/courses/implementing-authentication-serverless-http-api-aws)
  
 * [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p4)
 * [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p5)
@@ -61,7 +63,9 @@ Course Link (to be added once released)
 
 ### Implementing Monitoring and Continuous Deployment for Serverless Applications on AWS
 
-Course Link (to be added once released)
+Learn about monitoring your serverless applications with Amazon CloudWatch and AWS X-Ray as well as creating custom operational dashboards and alarms.
+
+[Course Link](https://app.pluralsight.com/library/courses/implementing-monitoring-continuous-deployment-serverless-applications-aws)
  
 * [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p5)
 * [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p6)
