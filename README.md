@@ -1,6 +1,6 @@
 # Serverless Development on AWS
 
-[Learning Path on Pluralsight](https://app.pluralsight.com/paths/skills/building-serverless-applications-on-aws)
+[Learning Path on Pluralsight](https://pluralsight.pxf.io/OReqan)
 
 This repository is for the Serverless Development on AWS learning path for Pluralsight. 
 
@@ -23,9 +23,7 @@ This repository is designed to be used alongside the learning path.  While the c
 
 Learn about leveraging Amazon S3 and CloudFront to distribute serverless web applications on a global scale.
 
-[Course Link](https://app.pluralsight.com/library/courses/implementing-serverless-web-application-hosting-delivery-aws)
-
-Course Link (to be added once released)
+[Course Link](https://pluralsight.pxf.io/BXngGq)
  
 * [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p1)
 * [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p2)
@@ -35,7 +33,7 @@ Course Link (to be added once released)
 
 Learn about using AWS Lambda as your compute service while exposing an API with API Gateway all while using Amazon DynamoDB to store application data.
 
-[Course Link](https://app.pluralsight.com/library/courses/building-serverless-api-tier-amazon-api-gateway)
+[Course Link](https://pluralsight.pxf.io/EaEBGK)
  
 * [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p2)
 * [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p3)
@@ -45,7 +43,7 @@ Learn about using AWS Lambda as your compute service while exposing an API with 
 
 Learn about using Amazon EventBridge alongside Amazon S3 and Step Functions to create powerful microservices for your serverless application.
 
-[Course Link](https://app.pluralsight.com/library/courses/utilizing-amazon-eventbridge-serverless-applications)
+[Course Link](https://pluralsight.pxf.io/3PJQXd)
  
 * [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p3)
 * [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p4)
@@ -55,7 +53,7 @@ Learn about using Amazon EventBridge alongside Amazon S3 and Step Functions to c
 
 Learn about securing serverless applications with Amazon Cognito for both web applications and the API tier.
 
-[Course Link](https://app.pluralsight.com/library/courses/implementing-authentication-serverless-http-api-aws)
+[Course Link](https://pluralsight.pxf.io/yRqMEW)
  
 * [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p4)
 * [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p5)
@@ -65,7 +63,7 @@ Learn about securing serverless applications with Amazon Cognito for both web ap
 
 Learn about monitoring your serverless applications with Amazon CloudWatch and AWS X-Ray as well as creating custom operational dashboards and alarms.
 
-[Course Link](https://app.pluralsight.com/library/courses/implementing-monitoring-continuous-deployment-serverless-applications-aws)
+[Course Link](https://pluralsight.pxf.io/LPK6oY)
  
 * [Starting Branch](https://github.com/davidtucker/ps-serverless-app/tree/p5)
 * [Ending Branch](https://github.com/davidtucker/ps-serverless-app/tree/p6)
