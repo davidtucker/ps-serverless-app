@@ -1,7 +1,4 @@
-import axios from 'axios';
 import * as mock from './mockData';
-
-const SERVICES_HOST = window.appConfig.apiEndpoint;
 
 /* eslint-disable no-console */
 

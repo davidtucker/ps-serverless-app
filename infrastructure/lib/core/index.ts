@@ -1,7 +1,4 @@
 import * as cdk from '@aws-cdk/core';
-import { ApplicationAPI } from './api';
-import { AppDatabase } from './database';
-import { AppServices } from './services';
 import { AssetStorage } from './storage';
 import { WebApp } from './webapp';
 

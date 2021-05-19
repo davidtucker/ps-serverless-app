@@ -54,7 +54,7 @@ export class WebApp extends cdk.Construct {
 
     // Deploy Web App ----------------------------------------------------
 
-    const deployment = new cwt.WebAppDeployment(this, 'WebAppDeploy', {
+    new cwt.WebAppDeployment(this, 'WebAppDeploy', {
       baseDirectory: props.baseDirectory,
       relativeWebAppPath: props.relativeWebAppPath,
       webDistribution: this.webDistribution,
