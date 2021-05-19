@@ -8,7 +8,6 @@ interface WebAppProps {
   hostingBucket: s3.IBucket;
   relativeWebAppPath: string;
   baseDirectory: string;
-  httpApi:apigw.IHttpApi;
 }
 
 export class WebApp extends cdk.Construct {
@@ -69,16 +68,5 @@ export class WebApp extends cdk.Construct {
     new cdk.CfnOutput(this, 'URL', {
       value: `https://${this.webDistribution.distributionDomainName}/`
     });
-
-    // Web App Config ------------------------------------------------------
-
-    new cwt.WebAppConfig(this, 'WebAppConfig', {
-      bucket: props.hostingBucket,
-      key: 'config.js',
-      configData: {
-        apiEndpoint: props.httpApi.apiEndpoint
-      },
-      globalVariableName: 'appConfig'
-    }).node.addDependency(deployment);
   }
 }

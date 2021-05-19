@@ -11,21 +11,10 @@ export class ApplicationStack extends cdk.Stack {
 
     const storage = new AssetStorage(this, 'Storage');
 
-    const database = new AppDatabase(this, 'Database');
-
-    const services = new AppServices(this, 'Services', {
-      documentsTable: database.documentsTable
-    });
-
-    const api = new ApplicationAPI(this, 'API', {
-      commentsService: services.commentsService
-    });
-
     new WebApp(this, 'WebApp', {
       hostingBucket: storage.hostingBucket,
       baseDirectory: '../',
       relativeWebAppPath: 'webapp',
-      httpApi: api.httpApi
     });
   }
 }
