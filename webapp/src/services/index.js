@@ -63,24 +63,18 @@ export const updateCurrentUserProfile = async (name, shouldDeletePicture, pictur
 // Comments --------------------------------------------------------------
 
 export const createComment = async (id, content) => {
-  const body = {
-    Comment: content,
-  };
-  const results = await axios.post(`${SERVICES_HOST}/comments/${id}`, body);
-  console.log(`Results: ${JSON.stringify(results)}`);
+  console.log(`[MOCK] Create Comment - Document ID ${id} Comment: ${content}`);
+  return mock.mockCall(mock.createComment(id, content), 1000);
 };
 
 export const getCommentsForDocument = async (id) => {
-  const results = await axios.get(`${SERVICES_HOST}/comments/${id}`);
-  const sortedResults = results.data.sort((a, b) => new Date(b.DateAdded) - new Date(a.DateAdded));
-  return sortedResults;
+  console.log(`[MOCK] Get comments for document ${id}`);
+  return mock.mockCall(mock.getCommentsForDocument(id), 1000);
 };
 
 export const reportCommentForModeration = async (id) => {
-  const body = {
-    CommentId: id,
-  };
-  await axios.post(`${SERVICES_HOST}/moderate`, body);
+  console.log(`[MOCK] Report comment for moderation ${id}`);
+  return mock.mockCall({}, 1000);
 };
 
 /* eslint-enable no-console */

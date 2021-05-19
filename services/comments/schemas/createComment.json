@@ -1,9 +1,0 @@
-{
-  "type": "object",
-  "properties": {
-    "Comment": {
-      "type": "string"
-    }
-  },
-  "additionalProperties": false
-}

@@ -1,9 +1,0 @@
-{
-  "type": "object",
-  "properties": {
-    "docid": {
-      "type": "string"
-    }
-  },
-  "additionalProperties": false
-}
