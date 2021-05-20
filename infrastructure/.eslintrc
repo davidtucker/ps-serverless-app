@@ -17,6 +17,7 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "linebreak-style": "off"
   },
   "overrides": [
     {
