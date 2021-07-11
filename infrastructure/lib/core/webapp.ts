@@ -34,13 +34,13 @@ export class WebApp extends cdk.Construct {
       ],
       errorConfigurations: [
         {
-          errorCachingMinTtl: 86400,
+          errorCachingMinTtl: cdk.Duration.days(1),
           errorCode: 403,
           responseCode: 200,
           responsePagePath: '/index.html',
         },
         {
-          errorCachingMinTtl: 86400,
+          errorCachingMinTtl: cdk.Duration.days(1),
           errorCode: 404,
           responseCode: 200,
           responsePagePath: '/index.html',
