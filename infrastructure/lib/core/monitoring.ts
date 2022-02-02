@@ -1,14 +1,16 @@
-import * as cdk from '@aws-cdk/core';
-import * as cw from '@aws-cdk/aws-cloudwatch';
-import * as cw_actions from '@aws-cdk/aws-cloudwatch-actions';
-import * as apigv2 from '@aws-cdk/aws-apigatewayv2';
-import * as ddb from '@aws-cdk/aws-dynamodb';
-import * as lambda from '@aws-cdk/aws-lambda';
-import * as sfn from '@aws-cdk/aws-stepfunctions';
-import * as s3 from '@aws-cdk/aws-s3';
-import * as sns from '@aws-cdk/aws-sns';
-import * as ssm from '@aws-cdk/aws-ssm';
-import * as subscriptions from '@aws-cdk/aws-sns-subscriptions';
+import {
+  aws_dynamodb as ddb,
+  aws_lambda as lambda,
+  aws_s3 as s3,
+  aws_stepfunctions as sfn,
+  aws_sns as sns,
+  aws_sns_subscriptions as subscriptions,
+  aws_cloudwatch as cw,
+  aws_cloudwatch_actions as cw_actions,
+  aws_ssm as ssm
+} from 'aws-cdk-lib';
+import * as apigv2 from '@aws-cdk/aws-apigatewayv2-alpha';
+import { Construct } from 'constructs';
 import { generateDashboardBody, MonitoringDashboardConfigProps } from '../config/dashboard';
 
 interface ApplicationMonitoringProps {
@@ -21,10 +23,10 @@ interface ApplicationMonitoringProps {
   assetsBucket: s3.IBucket;
 }
 
-export class ApplicationMonitoring extends cdk.Construct {
+export class ApplicationMonitoring extends Construct {
   private topic: sns.ITopic;
 
-  constructor(scope: cdk.Construct, id: string, props: ApplicationMonitoringProps) {
+  constructor(scope: Construct, id: string, props: ApplicationMonitoringProps) {
     super(scope, id);
 
     // Notification Topic ------------------------------------------------

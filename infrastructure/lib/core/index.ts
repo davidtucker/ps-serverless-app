@@ -1,4 +1,5 @@
-import * as cdk from '@aws-cdk/core';
+import { Stack, StackProps } from 'aws-cdk-lib';
+import { Construct } from 'constructs';
 import { ApplicationAPI } from './api';
 import { AppDatabase } from './database';
 import { ApplicationEvents } from './events';
@@ -9,8 +10,8 @@ import { AppServices } from './services';
 import { AssetStorage } from './storage';
 import { WebApp } from './webapp';
 
-export class ApplicationStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+export class ApplicationStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
     const storage = new AssetStorage(this, 'Storage');

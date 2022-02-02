@@ -1,8 +1,10 @@
-import * as apigv2 from '@aws-cdk/aws-apigatewayv2';
-import * as ddb from '@aws-cdk/aws-dynamodb';
-import * as lambda from '@aws-cdk/aws-lambda';
-import * as sfn from '@aws-cdk/aws-stepfunctions';
-import * as s3 from '@aws-cdk/aws-s3';
+import {
+ aws_s3 as s3,
+ aws_stepfunctions as sfn,
+ aws_lambda as lambda,
+ aws_dynamodb as ddb
+} from 'aws-cdk-lib'
+import * as apigv2 from '@aws-cdk/aws-apigatewayv2-alpha';
 
 export interface MonitoringDashboardConfigProps {
   api: apigv2.IHttpApi;

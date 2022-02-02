@@ -1,10 +1,10 @@
-import * as cdk from '@aws-cdk/core';
-import * as dynamodb from '@aws-cdk/aws-dynamodb';
+import { aws_dynamodb as dynamodb } from "aws-cdk-lib";
+import { Construct } from 'constructs';
 
-export class AppDatabase extends cdk.Construct {
+export class AppDatabase extends Construct {
   public readonly documentsTable: dynamodb.ITable;
 
-  constructor(scope: cdk.Construct, id: string) {
+  constructor(scope: Construct, id: string) {
     super(scope, id);
 
     const documentsTable = new dynamodb.Table(this, 'DocumentsTable', {

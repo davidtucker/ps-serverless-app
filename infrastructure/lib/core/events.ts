@@ -1,9 +1,11 @@
-import * as cdk from '@aws-cdk/core';
-import * as sfn from '@aws-cdk/aws-stepfunctions';
-import * as targets from '@aws-cdk/aws-events-targets';
-import * as s3 from '@aws-cdk/aws-s3';
-import * as events from '@aws-cdk/aws-events';
-import * as lambda from '@aws-cdk/aws-lambda';
+import {
+  aws_s3 as s3,
+  aws_stepfunctions as sfn,
+  aws_lambda as lambda,
+  aws_events_targets as targets,
+  aws_events as events
+} from 'aws-cdk-lib';
+import { Construct } from 'constructs';
 
 interface ApplicationEventsProps {
   processingStateMachine: sfn.IStateMachine;
@@ -11,8 +13,8 @@ interface ApplicationEventsProps {
   notificationsService: lambda.IFunction;
 }
 
-export class ApplicationEvents extends cdk.Construct {
-  constructor(scope: cdk.Construct, id: string, props: ApplicationEventsProps) {
+export class ApplicationEvents extends Construct {
+  constructor(scope: Construct, id: string, props: ApplicationEventsProps) {
     super(scope, id);
 
     // Trigger Step Function from S3 Upload ------------------------------

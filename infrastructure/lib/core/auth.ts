@@ -1,12 +1,12 @@
-import * as cdk from '@aws-cdk/core';
-import * as cognito from '@aws-cdk/aws-cognito';
+import { aws_cognito as cognito } from 'aws-cdk-lib';
+import { Construct } from 'constructs';
 
-export class ApplicationAuth extends cdk.Construct {
+export class ApplicationAuth extends Construct {
   public readonly userPool: cognito.IUserPool;
 
   public readonly userPoolClient: cognito.IUserPoolClient;
 
-  constructor(scope: cdk.Construct, id: string) {
+  constructor(scope: Construct, id: string) {
     super(scope, id);
 
     this.userPool = new cognito.UserPool(this, 'UserPool', {

@@ -1,12 +1,13 @@
-import * as cdk from '@aws-cdk/core';
-import * as lambda from '@aws-cdk/aws-lambda';
-import { NodejsFunction, NodejsFunctionProps } from '@aws-cdk/aws-lambda-nodejs';
-import * as logs from '@aws-cdk/aws-logs';
+import {
+  aws_lambda as lambda, aws_logs as logs
+ } from 'aws-cdk-lib';
+ import { NodejsFunctionProps, NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
+ import { Construct } from 'constructs';
 
 type NodejsServiceFunctionProps = NodejsFunctionProps;
 
 export class NodejsServiceFunction extends NodejsFunction {
-  constructor(scope: cdk.Construct, id: string, props: NodejsServiceFunctionProps) {
+  constructor(scope: Construct, id: string, props: NodejsServiceFunctionProps) {
     const runtime = props.runtime ?? lambda.Runtime.NODEJS_14_X;
     const handler = 'handler';
     const bundling = {

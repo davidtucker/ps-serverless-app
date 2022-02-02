@@ -1,11 +1,14 @@
 import * as path from 'path';
-import * as cdk from '@aws-cdk/core';
-import * as dynamodb from '@aws-cdk/aws-dynamodb';
-import * as iam from '@aws-cdk/aws-iam';
-import * as s3 from '@aws-cdk/aws-s3';
-import * as cognito from '@aws-cdk/aws-cognito';
-import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
-import * as ssm from '@aws-cdk/aws-ssm';
+import { Construct } from 'constructs';
+import {
+  aws_dynamodb as dynamodb,
+  aws_iam as iam,
+  aws_s3 as s3,
+  aws_cognito as cognito,
+  aws_ssm as ssm,
+  aws_lambda_nodejs as ln,
+  Duration
+} from 'aws-cdk-lib';
 import { NodejsServiceFunction } from '../constructs/lambda';
 
 interface AppServicesProps {
@@ -15,16 +18,16 @@ interface AppServicesProps {
   userPool: cognito.IUserPool;
 }
 
-export class AppServices extends cdk.Construct {
-  public readonly commentsService: NodejsFunction;
+export class AppServices extends Construct {
+  public readonly commentsService: ln.NodejsFunction;
 
-  public readonly documentsService: NodejsFunction;
+  public readonly documentsService: ln.NodejsFunction;
 
-  public readonly notificationsService: NodejsFunction;
+  public readonly notificationsService: ln.NodejsFunction;
 
-  public readonly usersService: NodejsFunction;
+  public readonly usersService: ln.NodejsFunction;
 
-  constructor(scope: cdk.Construct, id: string, props: AppServicesProps) {
+  constructor(scope: Construct, id: string, props: AppServicesProps) {
     super(scope, id);
 
     // Comments Service -------------------------------------------------
@@ -48,7 +51,7 @@ export class AppServices extends cdk.Construct {
 
     this.documentsService = new NodejsServiceFunction(this, 'DocumentServiceLambda', {
       entry: path.join(__dirname, '../../../services/documents/index.js'),
-      timeout: cdk.Duration.seconds(10),
+      timeout: Duration.seconds(10),
     });
 
     props.documentsTable.grantReadWriteData(this.documentsService);

@@ -1,11 +1,14 @@
 import * as path from 'path';
-import * as cdk from '@aws-cdk/core';
-import * as lambda from '@aws-cdk/aws-lambda';
-import * as dynamodb from '@aws-cdk/aws-dynamodb';
-import * as sfn from '@aws-cdk/aws-stepfunctions';
-import * as tasks from '@aws-cdk/aws-stepfunctions-tasks';
-import * as s3 from '@aws-cdk/aws-s3';
-import * as iam from '@aws-cdk/aws-iam';
+import { Construct } from 'constructs';
+import {
+  aws_s3 as s3,
+  aws_dynamodb as dynamodb,
+  aws_stepfunctions as sfn,
+  aws_stepfunctions_tasks as tasks,
+  aws_lambda as lambda,
+  aws_iam as iam,
+  Duration,
+} from 'aws-cdk-lib';
 import { NodejsServiceFunction } from '../constructs/lambda';
 
 interface DocumentProcessingProps {
@@ -14,17 +17,17 @@ interface DocumentProcessingProps {
   documentsTable: dynamodb.ITable;
 }
 
-export class DocumentProcessing extends cdk.Construct {
+export class DocumentProcessing extends Construct {
   public readonly processingStateMachine: sfn.IStateMachine;
 
-  constructor(scope: cdk.Construct, id: string, props: DocumentProcessingProps) {
+  constructor(scope: Construct, id: string, props: DocumentProcessingProps) {
     super(scope, id);
 
     // Metadata Service ---------------------------------------------------------
 
     const getDocumentMetadata = new NodejsServiceFunction(this, 'MetadataLambda', {
       entry: path.join(__dirname, '../../../services/processing/metadata.js'),
-      timeout: cdk.Duration.seconds(120),
+      timeout: Duration.seconds(120),
     });
 
     getDocumentMetadata.addEnvironment('UPLOAD_BUCKET', props.uploadBucket.bucketName);
@@ -41,7 +44,7 @@ export class DocumentProcessing extends cdk.Construct {
 
     const createThumbnail = new NodejsServiceFunction(this, 'ThumbnailLambda', {
       entry: path.join(__dirname, '../../../services/processing/thumbnail.js'),
-      timeout: cdk.Duration.seconds(120),
+      timeout: Duration.seconds(120),
       layers: [
         lambda.LayerVersion.fromLayerVersionAttributes(this, 'GhostscriptLayerVersion', {
           layerVersionArn: 'arn:aws:lambda:us-east-2:764866452798:layer:ghostscript:8',
@@ -84,7 +87,7 @@ export class DocumentProcessing extends cdk.Construct {
 
     const getTextDetectionResults = new NodejsServiceFunction(this, 'GetTextDetectionLambda', {
       entry: path.join(__dirname, '../../../services/processing/parseTextDetectionResults.js'),
-      timeout: cdk.Duration.seconds(300),
+      timeout: Duration.seconds(300),
     });
 
     getTextDetectionResults.addToRolePolicy(
@@ -101,7 +104,7 @@ export class DocumentProcessing extends cdk.Construct {
 
     getTextDetectionResultsInvoke.addRetry({
       maxAttempts: 100,
-      interval: cdk.Duration.seconds(5),
+      interval: Duration.seconds(5),
       backoffRate: 2,
     });
 
@@ -162,7 +165,7 @@ export class DocumentProcessing extends cdk.Construct {
     // Text Detection Process --------------------------------------------
 
     const waitStep = new sfn.Wait(this, 'WaitStep', {
-      time: sfn.WaitTime.duration(cdk.Duration.seconds(60)),
+      time: sfn.WaitTime.duration(Duration.seconds(60)),
       comment: 'Wait before checking for text detection',
     });
 
@@ -204,7 +207,7 @@ export class DocumentProcessing extends cdk.Construct {
 
     this.processingStateMachine = new sfn.StateMachine(this, 'ProcessingStateMachine', {
       definition: stepFunctionDefinition,
-      timeout: cdk.Duration.minutes(30),
+      timeout: Duration.minutes(30),
     });
   }
 }
