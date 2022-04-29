@@ -6021,10 +6021,10 @@ cdk-assets@1.100.0:
     glob "^7.1.6"
     yargs "^16.2.0"
 
-cdk-webapp-tools@1.100.12:
-  version "1.100.12"
-  resolved "https://registry.yarnpkg.com/cdk-webapp-tools/-/cdk-webapp-tools-1.100.12.tgz#f289c0a94dc34638a9a4466dc63f4a7655141ccb"
-  integrity sha512-e5Zss3GQb8HuRDara6et06D3HigN6rMIN5pXymj+yhTbf3GyznFjyMv5J4w6BwLL4y4K83wSuODXNH6unc37ig==
+cdk-webapp-tools@1.100.14:
+  version "1.100.14"
+  resolved "https://registry.yarnpkg.com/cdk-webapp-tools/-/cdk-webapp-tools-1.100.14.tgz#16acee234a7ca898bbc47131df0b83d50c14f57e"
+  integrity sha512-jUR7HbzAl+W1cSYmo30/3BiGN9ZANMc4OJi7mDmMjstnTABOcBScqrfxhMLVUi7J5hwxsJ2mhrdpndUSzHgIbQ==
   dependencies:
     "@aws-cdk/aws-cloudfront" "1.100.0"
     "@aws-cdk/aws-lambda" "1.100.0"
