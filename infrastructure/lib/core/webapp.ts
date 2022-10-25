@@ -1,8 +1,12 @@
-import * as cdk from '@aws-cdk/core';
-import * as s3 from '@aws-cdk/aws-s3';
-import * as cloudfront from '@aws-cdk/aws-cloudfront';
+import { Construct } from 'constructs';
+import {
+  aws_s3 as s3,
+  aws_cognito as cognito,
+  aws_cloudfront as cloudfront,
+  CfnOutput
+} from 'aws-cdk-lib';
+import * as apigv2 from '@aws-cdk/aws-apigatewayv2-alpha';
 import * as cwt from 'cdk-webapp-tools';
-import * as apigw from '@aws-cdk/aws-apigatewayv2';
 
 interface WebAppProps {
   hostingBucket: s3.IBucket;
@@ -10,10 +14,10 @@ interface WebAppProps {
   baseDirectory: string;
 }
 
-export class WebApp extends cdk.Construct {
+export class WebApp extends Construct {
   public readonly webDistribution: cloudfront.CloudFrontWebDistribution;
 
-  constructor(scope: cdk.Construct, id: string, props: WebAppProps) {
+  constructor(scope: Construct, id: string, props: WebAppProps) {
     super(scope, id);
 
     const oai = new cloudfront.OriginAccessIdentity(this, 'WebHostingOAI', {});
@@ -65,7 +69,7 @@ export class WebApp extends cdk.Construct {
       prune: false
     });
 
-    new cdk.CfnOutput(this, 'URL', {
+    new CfnOutput(this, 'URL', {
       value: `https://${this.webDistribution.distributionDomainName}/`
     });
   }

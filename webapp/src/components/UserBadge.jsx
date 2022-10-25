@@ -46,12 +46,12 @@ function UserBadge() {
     setOpen(false);
   };
 
-  function handleListKeyDown(event) {
+  const handleListKeyDown = (event) => {
     if (event.key === 'Tab') {
       event.preventDefault();
       setOpen(false);
     }
-  }
+  };
 
   const signOut = () => {
     Auth.signOut()
