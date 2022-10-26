@@ -14,7 +14,7 @@ export class ApplicationPipelineStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const source = CodePipelineSource.gitHub('davidtucker/ps-serverless-app', 'cdk-1.168.0', {
+    const source = CodePipelineSource.gitHub('davidtucker/ps-serverless-app', 'cdk-1.178.0', {
       authentication: cdk.SecretValue.secretsManager('dms_config', {
         jsonField: 'github_token'
       }),
