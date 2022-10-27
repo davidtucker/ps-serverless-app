@@ -10,6 +10,8 @@
     "import/prefer-default-export": "off",
     "consistent-return": "off",
     "no-underscore-dangle": "off",
-    "global-require": "off"
+    "global-require": "off",
+    "eol-last": "off"
+
   }
 }

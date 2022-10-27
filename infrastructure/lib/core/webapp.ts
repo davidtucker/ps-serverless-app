@@ -8,6 +8,8 @@ interface WebAppProps {
   relativeWebAppPath: string;
   baseDirectory: string;
   httpApi: apigv2.IHttpApi;
+  userPool: cognito.IUserPool;
+  userPoolClient: cognito.IUserPoolClient;
 }
 
 export class WebApp extends Construct {
@@ -69,14 +71,15 @@ export class WebApp extends Construct {
       value: `https://${this.webDistribution.distributionDomainName}/`,
     });
 
-    // Web App Config ----------------------------------------------------
+    // Web App Config ------------------------------------------------------
+
     new cwt.WebAppConfig(this, 'WebAppConfig', {
       bucket: props.hostingBucket,
       key: 'config.js',
       configData: {
         apiEndpoint: props.httpApi.apiEndpoint,
-        // userPoolId: props.userPool.userPoolId,
-        // userPoolWebClientId: props.userPoolClient.userPoolClientId,
+        userPoolId: props.userPool.userPoolId,
+        userPoolWebClientId: props.userPoolClient.userPoolClientId,
       },
       globalVariableName: 'appConfig',
     }).node.addDependency(deployment);

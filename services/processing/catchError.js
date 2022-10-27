@@ -14,7 +14,7 @@ const tableName = process.env.DYNAMO_DB_TABLE;
 exports.handler = async event => {
   // First function failing
   const filename =
-    Object.prototyle.hasOwnProperty.call(event, 'detail') && event.detail.requestParameters.key
+    Object.prototype.hasOwnProperty.call(event, 'detail') && event.detail.requestParameters.key
       ? event.detail.requestParameters.key
       : event.file.key;
 

@@ -3,5 +3,9 @@
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "requireConfigFile": false
+  },
+  "rules": {
+    "eol-last": ["error", "never"]
+
   }
 }
