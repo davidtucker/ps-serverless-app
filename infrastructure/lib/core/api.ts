@@ -52,16 +52,14 @@ export class ApplicationAPI extends cdk.Construct {
 
     // Authorizer -------------------------------------------------------
 
-    const authorizer = new HttpUserPoolAuthorizer({
-      userPool: props.userPool,
-      userPoolClient: props.userPoolClient,
+    const authorizer = new HttpUserPoolAuthorizer('Authorizer', props.userPool, {
+      userPoolClients: [props.userPoolClient],
     });
 
     // Comments Service -------------------------------------------------
 
-    const commentsServiceIntegration = new apigi.LambdaProxyIntegration({
-      handler: props.commentsService,
-    });
+    const commentsServiceIntegration = new apigi.HttpLambdaIntegration('CommentsServiceIntegration',
+      props.commentsService, {});
 
     this.httpApi.addRoutes({
       path: `/comments/{proxy+}`,
@@ -72,9 +70,8 @@ export class ApplicationAPI extends cdk.Construct {
 
     // Documents Service ------------------------------------------------
 
-    const documentsServiceIntegration = new apigi.LambdaProxyIntegration({
-      handler: props.documentsService,
-    });
+    const documentsServiceIntegration = new apigi.HttpLambdaIntegration('DocumentsServiceIntegration',
+    props.documentsService, {});
 
     this.httpApi.addRoutes({
       path: `/documents/{proxy+}`,
@@ -85,9 +82,8 @@ export class ApplicationAPI extends cdk.Construct {
 
     // Users Service ------------------------------------------------------
 
-    const usersServiceIntegration = new apigi.LambdaProxyIntegration({
-      handler: props.usersService,
-    });
+    const usersServiceIntegration = new apigi.HttpLambdaIntegration('UsersServiceIntegration',
+    props.usersService, {});
 
     this.httpApi.addRoutes({
       path: `/users/{proxy+}`,
