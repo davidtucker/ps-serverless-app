@@ -8,7 +8,6 @@
   location, it will be easier to implement tracing for AWS service calls.
 */
 import * as AWS from 'aws-sdk';
-import AWSXRay from 'aws-xray-sdk';
 
 let _dynamoDB;
 
@@ -20,7 +19,6 @@ let _dynamoDB;
 const dynamoDB = () => {
   if (!_dynamoDB) {
     _dynamoDB = new AWS.DynamoDB.DocumentClient();
-    // AWSXRay.captureAWSClient(_dynamoDB.service);
   }
   return _dynamoDB;
 };
@@ -34,7 +32,7 @@ let _s3;
  */
 const s3 = () => {
   if (!_s3) {
-    _s3 = AWSXRay.captureAWSClient(new AWS.S3());
+    _s3 = new AWS.S3();
   }
   return _s3;
 };
@@ -48,7 +46,7 @@ let _textract;
  */
 const textract = () => {
   if (!_textract) {
-    _textract = AWSXRay.captureAWSClient(new AWS.Textract());
+    _textract = new AWS.Textract();
   }
   return _textract;
 };
@@ -62,7 +60,7 @@ let _ses;
  */
 const ses = () => {
   if (!_ses) {
-    _ses = AWSXRay.captureAWSClient(new AWS.SES());
+    _ses = new AWS.SES();
   }
   return _ses;
 };
@@ -76,23 +74,9 @@ let _eventbridge;
  */
 const eventbridge = () => {
   if (!_eventbridge) {
-    _eventbridge = AWSXRay.captureAWSClient(new AWS.EventBridge());
+    _eventbridge = new AWS.EventBridge();
   }
   return _eventbridge;
-};
-
-let _cisp;
-
-/**
- * Creates the Cognito Identity Service Provider client for use in the application.
- *
- * @returns {object} Cognito Identity Service Provider Client
- */
-const cisp = () => {
-  if (!_cisp) {
-    _cisp = AWSXRay.captureAWSClient(new AWS.CognitoIdentityServiceProvider());
-  }
-  return _cisp;
 };
 
 export const AWSClients = {
@@ -101,5 +85,4 @@ export const AWSClients = {
   textract,
   ses,
   eventbridge,
-//   cisp,
 };

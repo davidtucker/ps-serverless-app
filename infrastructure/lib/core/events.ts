@@ -5,10 +5,11 @@ import {
     aws_stepfunctions as sfn,
     aws_lambda as lambda,
     aws_events_targets as targets,
-    aws_events as events
+    aws_events as events,
+    aws_cloudtrail as cloudtrail
   } from 'aws-cdk-lib';
   import { Construct } from 'constructs';
-  
+
 interface ApplicationEventsProps {
   processingStateMachine: sfn.IStateMachine;
   uploadBucket: s3.IBucket;
@@ -20,6 +21,16 @@ export class ApplicationEvents extends Construct {
     super(scope, id);
 
     // Trigger Step Function from S3 Upload ------------------------------
+
+    const trail = new cloudtrail.Trail(this, 'CloudTrail', {
+      includeGlobalServiceEvents: false,
+      isMultiRegionTrail: false
+    });
+
+    trail.addS3EventSelector([{ bucket: props.uploadBucket }], {
+      includeManagementEvents: false,
+      readWriteType: cloudtrail.ReadWriteType.WRITE_ONLY
+    });
 
     const uploadRule = props.uploadBucket.onCloudTrailWriteObject('UploadRule', {});
 

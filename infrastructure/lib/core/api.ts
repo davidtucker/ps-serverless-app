@@ -75,15 +75,16 @@ export class ApplicationAPI extends Construct {
     // Documents Service ------------------------------------------------
 
     const documentsServiceIntegration = new HttpLambdaIntegration(
-      'DocumentsIntegration',
+      'DocumentsServiceIntegration',
       props.documentsService,
+      {},
     );
 
     this.httpApi.addRoutes({
       path: `/documents/{proxy+}`,
       methods: serviceMethods,
       integration: documentsServiceIntegration,
-    //   authorizer,
+      //   authorizer,
     });
 
     // // Users Service ------------------------------------------------------
