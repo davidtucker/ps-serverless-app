@@ -26,7 +26,8 @@
         "no-new": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "no-console": "off",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "max-classes-per-file": "off"
       }
     }
   ]
