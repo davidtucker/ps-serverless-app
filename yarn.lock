@@ -10810,7 +10810,7 @@ ksuid@^2.0.0:
   dependencies:
     base-convert-int-array "^1.0.1"
 
-lambda-micro@1.0.1:
+lambda-micro@1.0.1, lambda-micro@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/lambda-micro/-/lambda-micro-1.0.1.tgz#7e89e98c3ae6e8a02f69081fe90d7b6c069c1079"
   integrity sha512-BMOJY6cT/tV+9YdVur0K+imnDEuuURsfHHYawvlSODO17xmYrjCeNiHJsDWLpZxV/XId6MZXW+btyfdlP/80GQ==

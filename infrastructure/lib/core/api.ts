@@ -52,9 +52,8 @@ export class ApplicationAPI extends cdk.Construct {
 
     // Authorizer -------------------------------------------------------
 
-    const authorizer = new HttpUserPoolAuthorizer({
-      userPool: props.userPool,
-      userPoolClient: props.userPoolClient,
+    const authorizer = new HttpUserPoolAuthorizer('Authorizer', props.userPool, {
+      userPoolClients: [props.userPoolClient],
     });
 
     // Comments Service -------------------------------------------------
@@ -83,9 +82,8 @@ export class ApplicationAPI extends cdk.Construct {
 
     // Users Service ------------------------------------------------------
 
-    const usersServiceIntegration = new apigi.LambdaProxyIntegration({
-      handler: props.usersService,
-    });
+    const usersServiceIntegration = new apigi.HttpLambdaIntegration('UsersServiceIntegration',
+    props.usersService, {});
 
     this.httpApi.addRoutes({
       path: `/users/{proxy+}`,
