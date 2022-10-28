@@ -15,7 +15,7 @@ interface AppServicesProps {
   documentsTable: dynamodb.ITable;
   uploadBucket: s3.IBucket;
   assetBucket: s3.IBucket;
-//   userPool: cognito.IUserPool;
+  userPool: cognito.IUserPool;
 }
 
 export class AppServices extends Construct {
@@ -82,21 +82,21 @@ export class AppServices extends Construct {
       ssm.StringParameter.valueForStringParameter(this, 'dms-globomantics-email'),
     );
 
-    // // Users Service ------------------------------------------------------
+    // Users Service ------------------------------------------------------
 
-    // this.usersService = new NodejsServiceFunction(this, 'UsersServiceLambda', {
-    //   entry: path.join(__dirname, '../../../services/users/index.js'),
-    // });
+    this.usersService = new NodejsServiceFunction(this, 'UsersServiceLambda', {
+      entry: path.join(__dirname, '../../../services/users/index.js'),
+    });
 
-    // this.usersService.addEnvironment('USER_POOL_ID', props.userPool.userPoolId);
-    // this.usersService.addEnvironment('ASSET_BUCKET', props.assetBucket.bucketName);
-    // props.assetBucket.grantReadWrite(this.usersService);
+    this.usersService.addEnvironment('USER_POOL_ID', props.userPool.userPoolId);
+    this.usersService.addEnvironment('ASSET_BUCKET', props.assetBucket.bucketName);
+    props.assetBucket.grantReadWrite(this.usersService);
 
-    // this.usersService.addToRolePolicy(
-    //   new iam.PolicyStatement({
-    //     resources: [props.userPool.userPoolArn],
-    //     actions: ['cognito-idp:*'],
-    //   }),
-    // );
+    this.usersService.addToRolePolicy(
+      new iam.PolicyStatement({
+        resources: [props.userPool.userPoolArn],
+        actions: ['cognito-idp:*'],
+      }),
+    );
   }
 }

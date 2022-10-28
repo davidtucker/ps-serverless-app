@@ -79,10 +79,25 @@ const eventbridge = () => {
   return _eventbridge;
 };
 
+let _cisp;
+
+/**
+ * Creates the Cognito Identity Service Provider client for use in the application.
+ *
+ * @returns {object} Cognito Identity Service Provider Client
+ */
+const cisp = () => {
+  if (!_cisp) {
+    _cisp = new AWS.CognitoIdentityServiceProvider();
+  }
+  return _cisp;
+};
+
 export const AWSClients = {
   dynamoDB,
   s3,
   textract,
   ses,
   eventbridge,
+  cisp,
 };
