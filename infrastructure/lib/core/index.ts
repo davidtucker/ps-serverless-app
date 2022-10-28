@@ -9,6 +9,7 @@ import { ApplicationAPI } from './api';
 import { ApplicationAuth } from './auth';
 import { DocumentProcessing } from './processing';
 import { ApplicationEvents } from './events';
+import { ApplicationMonitoring } from './monitoring';
 
 export class ApplicationStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -54,6 +55,16 @@ export class ApplicationStack extends Stack {
       httpApi: api.httpApi,
       userPool: auth.userPool,
       userPoolClient: auth.userPoolClient
+    });
+
+    new ApplicationMonitoring(this, 'Monitoring', {
+      api: api.httpApi,
+      table: database.documentsTable,
+      processingStateMachine: processing.processingStateMachine,
+      assetsBucket: storage.assetBucket,
+      documentsService: services.documentsService,
+      commentsService: services.commentsService,
+      usersService: services.usersService,
     });
   }
 }
